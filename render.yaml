@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: payment-parser-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: DATABASE_URL
+        sync: false
+
+  - type: web
+    name: payment-parser-ui
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run streamlit_app/Home.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
+    envVars:
+      - key: API_BASE_URL
+        sync: false
