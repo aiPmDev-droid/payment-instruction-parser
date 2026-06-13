@@ -1,15 +1,14 @@
 # Deployment Guide
 
-This project is deployable without installing local database software. Use Supabase for hosted PostgreSQL, then deploy the FastAPI API and Streamlit UI as separate web services.
+This project is deployable without installing local database software. Use Supabase for hosted PostgreSQL, then deploy the Next.js UI and FastAPI API together on Vercel.
 
 ## Recommended Deployment Shape
 
 - Database: Supabase Postgres
-- Backend: Render web service running FastAPI
-- Frontend: Render web service running Streamlit
+- App host: Vercel running Next.js and FastAPI
 - Secrets: platform environment variables, not `.env` committed to git
 
-Vercel is a strong fit for Next.js. This project currently uses Streamlit, so Render is simpler because it can run both long-lived Python web processes directly.
+Vercel is a strong fit now that the UI is Next.js. The older Streamlit UI remains in the repo as a local prototype, but it is not the primary deployment target.
 
 ## Accounts And Local Tools
 
@@ -42,22 +41,20 @@ postgresql+psycopg://USER:PASSWORD@HOST:PORT/postgres
 
 Set this as `DATABASE_URL` in Render.
 
-## Render Setup
+## Vercel Setup
 
 1. Push this project to GitHub.
-2. In Render, create a new Blueprint from the repository.
-3. Render will detect `render.yaml`.
-4. Add these secret environment variables:
+2. In Vercel, import the GitHub repository.
+3. Add these secret environment variables:
 
 ```text
 OPENAI_API_KEY=...
 DATABASE_URL=postgresql+psycopg://...
+OPENAI_MODEL=gpt-4o-mini
 ```
 
-5. Deploy `payment-parser-api` first.
-6. Copy the API service URL.
-7. Set `API_BASE_URL` on `payment-parser-ui` to the API URL.
-8. Redeploy the UI service.
+4. Deploy.
+5. Confirm `https://YOUR_PROJECT.vercel.app/api/health` returns `{"status":"ok"}`.
 
 ## Production Notes
 

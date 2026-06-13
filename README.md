@@ -4,7 +4,7 @@ Internal finance tool that extracts structured payment instructions from messy `
 
 ## Stack
 
-Python, FastAPI, OpenAI Structured Outputs, Streamlit, PostgreSQL, Docker Compose.
+Next.js, FastAPI, OpenAI Structured Outputs, PostgreSQL/Supabase, Docker Compose for optional local development.
 
 ## Extracted Schema
 
@@ -33,7 +33,7 @@ docker compose up --build
 
 FastAPI: `http://localhost:8000`
 
-Streamlit: `http://localhost:8501`
+Next.js: run separately with `npm run dev`.
 
 ## Run Without Docker
 
@@ -50,6 +50,15 @@ In another terminal:
 streamlit run streamlit_app/Home.py
 ```
 
+## Run The Vercel-Friendly UI Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Next.js: `http://localhost:3000`
+
 ## Test
 
 ```bash
@@ -61,7 +70,7 @@ pytest
 - Python + FastAPI project skeleton: complete
 - ChatGPT API structured extraction: complete
 - Output schema with recommended fields: complete
-- Streamlit upload UI: complete
+- Next.js upload UI: complete
 - PostgreSQL storage: complete
 - 10 messy sample emails: complete
 - ChatGPT vs regex tradeoff doc: complete
@@ -73,4 +82,4 @@ See `docs/supabase.md` for how Supabase works as a hosted PostgreSQL option for 
 
 ## Deployment
 
-See `docs/deployment.md` for the recommended deployable setup using Supabase and Render.
+See `docs/vercel.md` for the Vercel + Supabase deployment path.
