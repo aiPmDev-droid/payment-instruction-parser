@@ -1,0 +1,287 @@
+:root {
+  --bg: #f5f7f8;
+  --text: #172026;
+  --muted: #61717d;
+  --line: #d9e0e5;
+  --panel: #ffffff;
+  --accent: #0f766e;
+  --accent-dark: #115e59;
+  --warn: #b42318;
+  --soft: #e8f3f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.topbar {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  letter-spacing: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.status-pill {
+  align-items: center;
+  background: var(--soft);
+  color: var(--accent-dark);
+  display: inline-flex;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.upload-panel,
+.results-panel,
+.history-section {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.upload-panel,
+.results-panel {
+  padding: 20px;
+}
+
+.panel-heading,
+.section-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.panel-heading {
+  justify-content: flex-start;
+}
+
+.dropzone {
+  align-items: center;
+  border: 1px dashed #9aa8b2;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  min-height: 178px;
+  padding: 22px;
+  text-align: center;
+}
+
+.dropzone input {
+  display: none;
+}
+
+.primary-button {
+  align-items: center;
+  background: var(--accent);
+  border: 0;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  color: var(--warn);
+  font-size: 14px;
+  margin: 12px 0 0;
+}
+
+.empty-state {
+  align-items: center;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  display: flex;
+  min-height: 252px;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.payment-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.payment-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.card-row span {
+  background: var(--soft);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 8px;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 14px;
+}
+
+dt {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.excerpt,
+.notes {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.notes {
+  color: #42515c;
+  margin-top: 8px;
+}
+
+.history-section {
+  overflow: hidden;
+}
+
+.section-heading {
+  padding: 18px 20px 0;
+}
+
+.section-heading span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  min-width: 760px;
+  width: 100%;
+}
+
+th,
+td {
+  border-top: 1px solid var(--line);
+  padding: 14px 20px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+td {
+  font-size: 14px;
+}
+
+@media (max-width: 860px) {
+  .topbar,
+  .workbench {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .status-pill {
+    justify-self: start;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
+  }
+}

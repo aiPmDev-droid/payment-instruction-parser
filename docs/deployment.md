@@ -48,9 +48,9 @@ Set this as `DATABASE_URL` in Render.
 3. Add these secret environment variables:
 
 ```text
-OPENAI_API_KEY=...
+GEMINI_API_KEY=...
 DATABASE_URL=postgresql+psycopg://...
-OPENAI_MODEL=gpt-4o-mini
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
 4. Deploy.

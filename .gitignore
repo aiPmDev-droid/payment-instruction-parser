@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .streamlit/secrets.toml
+.next/
+node_modules/

@@ -12,7 +12,7 @@ Payment Instruction Parser is an internal finance tool that accepts `.txt` and `
 
 The app uses FastAPI for the backend because it provides a clean API boundary between extraction, storage, and the UI. Streamlit keeps the operator interface lightweight and fast to iterate. PostgreSQL supports an audit-friendly history table, while Docker Compose makes the portfolio demo reproducible.
 
-The extraction layer uses OpenAI Structured Outputs so model responses match a strict schema instead of returning loose JSON. Each extracted payment includes vendor, amount, currency, due date, payment method, confidence, supporting source excerpt, and notes.
+The extraction layer uses Google Gemini Structured Outputs so model responses match a strict schema instead of returning loose JSON. Each extracted payment includes vendor, amount, currency, due date, payment method, confidence, supporting source excerpt, and notes.
 
 ## Impact
 

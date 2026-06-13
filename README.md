@@ -4,7 +4,7 @@ Internal finance tool that extracts structured payment instructions from messy `
 
 ## Stack
 
-Next.js, FastAPI, OpenAI Structured Outputs, PostgreSQL/Supabase, Docker Compose for optional local development.
+Next.js, FastAPI, Google Gemini Structured Outputs, PostgreSQL/Supabase, Docker Compose for optional local development.
 
 ## Extracted Schema
 
@@ -25,7 +25,7 @@ The API supports multiple payment instructions per email.
 cp .env.example .env
 ```
 
-Add your OpenAI API key to `.env`, then run:
+Add your Gemini API key to `.env`, then run:
 
 ```bash
 docker compose up --build
@@ -68,12 +68,12 @@ pytest
 ## Portfolio Checklist
 
 - Python + FastAPI project skeleton: complete
-- ChatGPT API structured extraction: complete
+- Gemini API structured extraction: complete
 - Output schema with recommended fields: complete
 - Next.js upload UI: complete
 - PostgreSQL storage: complete
 - 10 messy sample emails: complete
-- ChatGPT vs regex tradeoff doc: complete
+- Gemini vs regex tradeoff doc: complete
 - 1-page case study: complete
 
 ## Supabase
