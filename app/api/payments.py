@@ -31,33 +31,42 @@ async def extract_payment_file(
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
     # Try to persist to database, but don't fail if DB is unavailable
-    try:
-        for payment in result.payments:
-            db.add(
-                PaymentInstructionRecord(
-                    vendor=payment.vendor,
-                    amount=payment.amount,
-                    currency=payment.currency,
-                    due_date=payment.due_date,
-                    payment_method=payment.payment_method.value,
-                    confidence=payment.confidence,
-                    raw_text_excerpt=payment.raw_text_excerpt,
-                    notes=payment.notes,
-                    source_filename=file.filename,
-                    source_type=source_type,
-                    original_text=email_text,
+    if db is not None:
+        try:
+            for payment in result.payments:
+                db.add(
+                    PaymentInstructionRecord(
+                        vendor=payment.vendor,
+                        amount=payment.amount,
+                        currency=payment.currency,
+                        due_date=payment.due_date,
+                        payment_method=payment.payment_method.value,
+                        confidence=payment.confidence,
+                        raw_text_excerpt=payment.raw_text_excerpt,
+                        notes=payment.notes,
+                        source_filename=file.filename,
+                        source_type=source_type,
+                        original_text=email_text,
+                    )
                 )
-            )
-        db.commit()
-    except OperationalError as exc:
-        logger.warning("Database unavailable, skipping persistence: %s", exc)
-        db.rollback()
+            db.commit()
+        except OperationalError as exc:
+            logger.warning("Database unavailable, skipping persistence: %s", exc)
+            try:
+                db.rollback()
+            except Exception:
+                pass
+    else:
+        logger.info("No database session available, returning extraction without persistence.")
 
     return result
 
 
 @router.get("", response_model=list[StoredPayment])
 def list_payments(db: Session = Depends(get_db)) -> list[StoredPayment]:
+    if db is None:
+        logger.info("No database session available, returning empty history.")
+        return []
     try:
         records = db.scalars(
             select(PaymentInstructionRecord).order_by(PaymentInstructionRecord.created_at.desc()).limit(100)

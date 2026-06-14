@@ -12,8 +12,15 @@ logger = logging.getLogger(__name__)
 connect_args = {}
 if settings.database_url and "supabase.co" in settings.database_url:
     connect_args["prepare_threshold"] = None
+    connect_args["connect_timeout"] = 3
 
-engine = create_engine(settings.database_url, pool_pre_ping=True, connect_args=connect_args)
+# Short timeout + no pre-ping to avoid hanging on unreachable DB
+engine = create_engine(
+    settings.database_url,
+    pool_pre_ping=False,
+    connect_args=connect_args,
+    pool_timeout=3,
+)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 
@@ -22,8 +29,10 @@ class Base(DeclarativeBase):
 
 
 def get_db():
-    db = SessionLocal()
     try:
+        db = SessionLocal()
         yield db
-    finally:
         db.close()
+    except Exception as exc:
+        logger.warning("Failed to create DB session: %s", exc)
+        yield None
