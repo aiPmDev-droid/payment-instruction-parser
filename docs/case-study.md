@@ -20,4 +20,4 @@ The tool reduces manual data entry and creates a more reliable review queue for 
 
 ## Future Improvements
 
-Next steps include human approval status, invoice attachment parsing, Supabase deployment, validation rules for suspicious payment changes, and dashboards for payment volume and extraction accuracy.
+Next steps include human approval status, invoice attachment parsing, Neon database setup, validation rules for suspicious payment changes, and dashboards for payment volume and extraction accuracy.

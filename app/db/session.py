@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 def _db_is_reachable() -> bool:
     """Check if the database host is reachable (quick DNS check)."""
     url = settings.database_url
-    if not url or "supabase.co" not in url:
+    if not url:
         return True
 
     try:
@@ -23,7 +23,7 @@ def _db_is_reachable() -> bool:
         addrs = socket.getaddrinfo(hostname, 5432, socket.AF_INET, socket.SOCK_STREAM)
         return len(addrs) > 0
     except (OSError, Exception) as exc:
-        logger.warning("Database host unreachable (IPv6 only?): %s", exc)
+        logger.warning("Database host unreachable: %s", exc)
         return False
 
 
@@ -31,7 +31,7 @@ _db_available = _db_is_reachable()
 
 if _db_available:
     connect_args = {}
-    if settings.database_url and "supabase.co" in settings.database_url:
+    if settings.database_url and ("neon.tech" in settings.database_url or "supabase.co" in settings.database_url):
         connect_args["prepare_threshold"] = None
         connect_args["connect_timeout"] = 3
 

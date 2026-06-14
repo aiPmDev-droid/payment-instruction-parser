@@ -1,10 +1,10 @@
 # Deployment Guide
 
-This project is deployable without installing local database software. Use Supabase for hosted PostgreSQL, then deploy the Next.js UI and FastAPI API together on Vercel.
+This project is deployable without installing local database software. Use **Neon** for serverless PostgreSQL, then deploy the Next.js UI and FastAPI API together on Vercel.
 
 ## Recommended Deployment Shape
 
-- Database: Supabase Postgres
+- Database: Neon Postgres
 - App host: Vercel running Next.js and FastAPI
 - Secrets: platform environment variables, not `.env` committed to git
 
@@ -15,8 +15,7 @@ Vercel is a strong fit now that the UI is Next.js. The older Streamlit UI remain
 Required:
 
 - GitHub account
-- Supabase account
-- Render account
+- Neon account (free tier)
 - Git installed locally
 
 Optional:
@@ -25,21 +24,20 @@ Optional:
 - Python 3.11+, only if running without Docker
 - VS Code, for editing
 
-You do not need local Postgres if you use Supabase.
+You do not need local Postgres if you use Neon.
 
-## Supabase Setup
+## Database Setup (Neon)
 
-1. Create a new Supabase project.
-2. Go to the project dashboard and click **Connect**.
-3. Copy a Postgres connection string.
-4. For hosted app traffic, prefer the pooler connection if the deployment platform is IPv4-only.
-5. Convert the URL to SQLAlchemy format if needed:
+1. Go to [neon.tech](https://neon.tech) and sign up (free tier).
+2. Create a new project (choose a region close to you).
+3. From the dashboard, copy the **Connection string** (URI format).
+4. Convert the URL to SQLAlchemy format:
 
 ```text
-postgresql+psycopg://USER:PASSWORD@HOST:PORT/postgres
+postgresql+psycopg://USER:PASSWORD@HOST:PORT/DB_NAME?sslmode=require
 ```
 
-Set this as `DATABASE_URL` in Render.
+Set this as `DATABASE_URL` in Vercel.
 
 ## Vercel Setup
 

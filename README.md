@@ -4,7 +4,7 @@ Internal finance tool that extracts structured payment instructions from messy `
 
 ## Stack
 
-Next.js, FastAPI, Google Gemini Structured Outputs, PostgreSQL/Supabase, Docker Compose for optional local development.
+Next.js, FastAPI, Google Gemini Structured Outputs, PostgreSQL (Neon), Docker Compose for optional local development.
 
 ## Extracted Schema
 
@@ -76,10 +76,10 @@ pytest
 - Gemini vs regex tradeoff doc: complete
 - 1-page case study: complete
 
-## Supabase
+## Database
 
-See `docs/supabase.md` for how Supabase works as a hosted PostgreSQL option for this project.
+This project uses **Neon** (serverless PostgreSQL) for hosted database. See `docs/neon.md` for setup instructions.
 
 ## Deployment
 
-See `docs/vercel.md` for the Vercel + Supabase deployment path.
+See `docs/vercel.md` for the Vercel deployment path.

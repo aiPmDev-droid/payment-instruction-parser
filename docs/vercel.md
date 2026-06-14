@@ -1,6 +1,6 @@
 # Vercel Deployment
 
-Vercel can deploy the Next.js frontend and FastAPI backend for this project. Supabase should host PostgreSQL.
+Vercel deploys the Next.js frontend and FastAPI backend for this project. A hosted PostgreSQL database (Neon) provides persistent storage.
 
 ## What Vercel Hosts
 
@@ -13,7 +13,7 @@ Vercel can deploy the Next.js frontend and FastAPI backend for this project. Sup
 ## Required Services
 
 - Vercel for the Next.js UI and FastAPI backend
-- Supabase for hosted PostgreSQL
+- Neon for serverless PostgreSQL
 
 ## Files Added For Vercel
 
@@ -51,4 +51,8 @@ npm install
 npm run dev
 ```
 
-For API testing, make sure `DATABASE_URL` points to Supabase or a local Postgres database.
+For API testing, make sure `DATABASE_URL` points to Neon or a local Postgres database.
+
+## Database Setup
+
+See `docs/neon.md` for setting up a hosted PostgreSQL database on Neon.
