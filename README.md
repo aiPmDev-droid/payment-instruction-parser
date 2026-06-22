@@ -4,9 +4,9 @@ Internal finance tool that extracts structured payment instructions from messy `
 
 ## Demo
 
-[![Watch the demo](demo/frames/01-landing.png)](demo/demo.mp4)
+![Payment Instruction Parser Demo](demo/demo.gif)
 
-*Click the thumbnail above to play the demo video (94KB MP4). Upload a `.txt` or `.eml` email → click Extract → get structured payment data with confidence scores and supporting excerpts.*
+*Upload a `.txt` or `.eml` email → click Extract → get structured payment data with confidence scores and supporting excerpts.*
 
 ## Stack
 
