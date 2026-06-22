@@ -2,6 +2,12 @@
 
 Internal finance tool that extracts structured payment instructions from messy `.txt` and `.eml` emails.
 
+## Demo
+
+![Payment Instruction Parser Demo](demo/demo.gif)
+
+*Upload a `.txt` or `.eml` email → click Extract → get structured payment data with confidence scores and supporting excerpts.*
+
 ## Stack
 
 Next.js, FastAPI, Google Gemini Structured Outputs, PostgreSQL (Neon), Docker Compose for optional local development.
